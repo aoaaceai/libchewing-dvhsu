@@ -1,0 +1,8 @@
+1405c1405
+<     const char dkey[] = {
+---
+>     const char qkey[] = {
+1413c1413
+<     const char qkey[] = {
+---
+>     const char dkey[] = {
