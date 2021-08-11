@@ -1,0 +1,13 @@
+--- src/chewingio.c	2016-04-11 19:33:02.000000000 +0800
++++ src/chewingio.c	2021-08-11 12:14:02.961133695 +0800
+@@ -1423,8 +1423,8 @@
+     STATIC_ASSERT(ARRAY_SIZE(dkey) == ARRAY_SIZE(qkey));
+ 
+     for (i = 0; i < ARRAY_SIZE(dkey); i++) {
+-        if (key == qkey[i]) {
+-            key = dkey[i];
++        if (key == dkey[i]) {
++            key = qkey[i];
+             return key;
+         }
+     }

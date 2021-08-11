@@ -1,7 +1,7 @@
 origname=libchewing
 pkgname=$origname-dvhsu
 pkgver=0.5.1
-pkgrel=1
+pkgrel=11
 pkgdesc="a small patch to make dvorak hsu's keyboard functional"
 arch=('x86_64')
 depends=('sqlite')
@@ -12,16 +12,23 @@ provides=("$origname")
 sha256sums=('9708c63415fa6034435c0f38100e7d30d0e1bac927f67bec6dfeb3fef016172b')
 
 prepare() {
-    patch -n0 "$pkgname-$pkgver"/src/chewingio.c dvorak.patch
+    cd "$origname-$pkgver"
+    patch -p0 -i ../../dvhsu.patch
 }
 
 build() {
-    cd "$pkgname-$pkgver"
-    cat src/chewingio.c > /tmp/cio
+    cd "$origname-$pkgver"
+    ./configure --libdir=/usr/lib
+    make
+}
+
+check() {
+    cd "$origname-$pkgver"
+    make check
 }
 
 package() {
-
-    echo hello > /tmp/trash
+    cd "$origname-$pkgver"
+    make DESTDIR="$pkgdir/" install
 }
 
